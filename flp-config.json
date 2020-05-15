@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "sap.ui.veh_busquedaserie.Tdp_PVEH_BUSQUEDASERIE",
+        "description": "Busqueda por Serie",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#Tdp_PVEH_BUSQUEDASERIE-Display",
+        "navigationComponentName": "sap.ui.veh_busquedaserie",
+        "intentSemanticObject": "Tdp_PVEH_BUSQUEDASERIE",
+        "intentAction": "Display",
+        "html5ApplicationName": "tdppvehbusquedaserie",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "227b60ea-ff71-4259-8e0c-723ec48e7353-1515795184575"
+        ],
+        "contentPackages": [
+            "16d1bf9f-745a-458d-a3f6-eff173009fdf-1515795427335"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Busqueda por Serie",
+        "subtitle": "Consultar",
+        "searchKeywords": "Busqueda por Serie,Consultar",
+        "displayIconUrl": "sap-icon://search",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

@@ -1,0 +1,512 @@
+<mvc:View 
+    controllerName="sap.ui.veh_busquedaserie.controller.Home" 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.ui.table"
+    xmlns="sap.m"
+    xmlns:a="sap.uxap"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:sample="sap.uxap.sample.ObjectPageSubSection">
+    <Page title="Búsqueda por Serie" 
+        showHeader="true"
+        enableScrolling="true"
+        class="sapUiContentPadding"
+        showNavButton="true" navButtonPress="onNavBack">
+        <html:style>
+            .colorBarra {
+                background-color: #eff4fa;
+            }
+        </html:style>
+        <Panel expandable="true" expanded="true" width="auto">
+            <f:Form id="SimpleFormDisplay33333" editable="true">
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="4"
+                        labelSpanL="4"
+                        labelSpanM="6"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+
+                <f:FormContainer title="">
+                    <f:formElements>
+                      <f:FormElement label="Número de Serie">
+                            <f:fields>
+                                <Input type="Text" id="numSerie"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="">
+                            <f:fields>
+                                <Button 
+                                    type="Accept"
+                                    press="Buscar"
+                                    text="Buscar"
+                                    icon="sap-icon://search"
+                                    />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel1" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Datos del Vehículo"/>
+            </Toolbar>
+        </headerToolbar>
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <f:SimpleForm
+                id="Formulariocon3columns"
+                visible="false"
+                maxContainerCols="3"
+                editable="false"
+                title=""
+                layout="ResponsiveGridLayout"
+                singleContainerFullSize="false" 
+                    labelSpanL="5"
+                    labelSpanM="3"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    columnsL="3"
+                    columnsM="3">
+                <f:content>
+                    <c:Title text="" />
+                    <Label text="Serie No"/>
+                    <Text text="{path: 'data>/serie', formatter: '.formatter.borrar0izalfanumerico'}" />
+                    <Label text="Factura"/>
+                    <Text text="{data>/zfactura_prov}"/>
+                    <Label text="Puerta"/>
+                    <Text text="{path: 'data>/znum_puerta', formatter: '.formatter.borrar0izalfanumerico'}" />
+                    <Label text="Vapor"/>
+                    <Text text="{data>/znave}" />
+                    <Label text="Viaje"/>
+                    <Text text="{data>/viaje}" />
+                    <Label text="Año Modelo"/>
+                    <Text text="{data>/zano_modelo}" />
+                    <Label text="Año Fabricacion"/>
+                    <Text text="{data>/zzano_fab}" />
+
+                    <c:Title text="" />
+                    <Label text="Modelo" />
+                    <Text text="{data>/modelo}" />
+                    <Label id="idlblChasis" text="Chasis" />
+                    <Text id="idtxtChasis" text="{data>/vhvin}" />
+                    <Label id="idlblFob" text="FOB" />
+                    <Text id="idtxtFob" text="{data>/zfob}" />
+                    <Label text="Desad. Programado" />
+                    <Text text="{path: 'data>/zfech_dua_prog', formatter: '.formatter.onFormatDate'}" />
+                    <Label text="Fact. Programada" />
+                    <Text text="{path: 'data>/fact_prog', formatter: '.formatter.onFormatDate'}" />
+                    <Label text="Fec. de Arribo" />
+                    <Text text="{path: 'data>/zfllegada', formatter: '.formatter.onFormatDate'}" />
+                    <Label text="Estado de Aduanas" />
+                    <Text text="{data>/txt01}" />
+                    <Label text="Estatus de Venta" />
+                    <Text text="{data>/statu}" />
+
+                    <c:Title text="" />
+                    <Label text="Color" />
+                    <Text text="{data>/zzcolor_desc}" />
+                    <Label id="idlblMotor" text="Motor" />
+                    <Text id="idtxtMotor" text="{data>/zmotor}" />
+                    <Label id="idlblFlete" text="Flete" />
+                    <Text id="idtxtFlete" text="{data>/zflete}" />
+                    <Label text="Desad. Real" />
+                    <Text text="{path: 'data>/zfech_dua_real', formatter: '.formatter.onFormatDate'}" />
+                    <Label text="Fact. Real" />
+                    <Text text="{path: 'data>/fact_real', formatter: '.formatter.onFormatDate'}" />
+                    <Label text="Número de DUA" />
+                    <Text text="{data>/znro_dua}" />
+                    <Label text="Pago Anticipado" />
+                    <Text text="{path: 'data>/pago_anticipado', formatter: '.formatter.onValidatePago'}" />
+                </f:content>
+            </f:SimpleForm>
+        </l:VerticalLayout>
+    </Panel> 
+    <Panel expandable="true" expanded="true" width="auto" id="Panel2" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Datos de la Venta"/>
+            </Toolbar>
+        </headerToolbar>
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <f:SimpleForm   id="Formulario4"
+                        layout="ResponsiveGridLayout"
+                        editable="false"
+                        visible="false"
+                        labelSpanXL="2"
+                        labelSpanL="2"
+                        labelSpanM="12"
+                        labelSpanS="5"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false">
+                <f:content>
+                    <Label text="Concesionario" textFor="ref"/>
+                    <Text text="{data>/nomconce}" />
+                    <Label text="P. Vta" textFor="sad"/>
+                    <Text text="{data>/pventa}" />
+                    <Label text="Campaña" textFor="dd"/>
+                    <Text text="{data>/campana}" />
+                </f:content>
+            </f:SimpleForm>
+        </l:VerticalLayout>
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel3" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Factura"/>
+            </Toolbar>
+        </headerToolbar>
+        <Table id="Table1" visible="false"
+            inset="false">
+            <columns>
+                <Column
+                    width="12em">
+                    <Text text="N° Factura" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Fecha" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Valor Venta" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="ISC" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="IGV" />
+                </Column>
+                <Column
+                    hAlign="End">
+                    <Text text="Lavado" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="End">
+                    <Text text="Total" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                            text="{data>/factura}" />
+                        <Text
+                            text="{path: 'data>/fact_real', formatter: '.formatter.onFormatDate'}" />
+                        <Text
+                            text="{path:'data>/vventa', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/fisc', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/figv', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/lavado', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/ftotal', formatter: '.formatter.onFormatMoney'}" />    
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel4" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Notas de Abono (MB)"/>
+            </Toolbar>
+        </headerToolbar>
+        <Table id="Table2" visible="false"
+            inset="false">
+            <columns>
+                    <Column
+                    width="12em">
+                    <Text text="N° Factura" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Fecha" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Valor Venta" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="ISC" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="IGV" />
+                </Column>
+                <Column
+                    hAlign="End">
+                    <Text text="" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="End">
+                    <Text text="Total" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                            text="{data>/notabmb}" />
+                        <Text
+                            text="{path: 'data>/fecabmb', formatter: '.formatter.onFormatDate'}" />
+                        <Text
+                            text="{path: 'data>/vveabmb', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/nambisc', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/nambigv', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="" />
+                        <Text
+                            text="{path: 'data>/nambtot', formatter: '.formatter.onFormatMoney'}" />    
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table> 
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel5" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Nota de Abono Flota"/>
+            </Toolbar>
+        </headerToolbar>
+        <Table id="Table3" visible="false"
+            inset="false">
+            <columns>
+                    <Column
+                    width="12em">
+                    <Text text="N° Factura" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Fecha" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Valor Venta" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="ISC" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="IGV" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="End">
+                    <Text text="Total" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                            text="{data>/notabfl}" />
+                        <Text
+                            text="{path: 'data>/fecabfl', formatter: '.formatter.onFormatDate'}" />
+                        <Text
+                            text="{path: 'data>/vveabfl', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/iscabfl', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="{path: 'data>/igvabfl', formatter: '.formatter.onFormatMoney'}" />
+                        <Text
+                            text="" />
+                        <Text
+                            text="{path: 'data>/nafltot', formatter: '.formatter.onFormatMoney'}" />    
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel6" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Nota de Abono Especial"/>
+            </Toolbar>
+        </headerToolbar>
+        <Table id="Table5" visible="false"
+            inset="false">
+            <columns>
+                    <Column
+                    width="12em">
+                    <Text text="N° Factura" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Fecha" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Valor Venta" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="ISC" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="IGV" />
+                </Column>
+                <Column
+                    hAlign="End">
+                    <Text text="Texto" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="End">
+                    <Text text="Total" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                            text="{data>/notabes}"/>
+                        <Text
+                            text="{path: 'data>/fecabes', formatter: '.formatter.onFormatDate'}"/>
+                        <Text
+                            text="{path: 'data>/vveabes', formatter: '.formatter.onFormatMoney'}"/>
+                        <Text
+                            text="{path: 'data>/iscabes', formatter: '.formatter.onFormatMoney'}"/>
+                        <Text
+                            text="{path: 'data>/igvabes', formatter: '.formatter.onFormatMoney'}"/>
+                         <Text
+                            text="{data>/texabes}"/>
+                        <Text
+                            text="{path: 'data>/naestot', formatter: '.formatter.onFormatMoney'}"/>    
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table> 
+    </Panel>
+    <Panel expandable="true" expanded="true" width="auto" id="Panel7" visible="false">
+        <headerToolbar>
+            <Toolbar height="3rem">
+                <Title text="Nota de Débito"/>
+            </Toolbar>
+        </headerToolbar>
+        <Table id="Table4" visible="false"
+            inset="false">
+            <columns>
+                    <Column
+                    width="12em">
+                    <Text text="N° Factura" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Fecha" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Valor Venta" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="ISC" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="IGV">
+                    <Text text="IGV" />
+                </Column>
+                <Column
+                    hAlign="End">
+                    <Text text="" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="End">
+                    <Text text="Total" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                            text="{data>/notadeb}"/>
+                        <Text
+                            text="{path: 'data>/fenodeb', formatter: '.formatter.onFormatDate'}"/>
+                        <Text
+                            text="{path: 'data>/vvnodeb', formatter: '.formatter.onFormatMoney'}"/>
+                        <Text
+                            text="{path: 'data>/iscndeb', formatter: '.formatter.onFormatMoney'}"/>
+                        <Text
+                            text="{path: 'data>/igvndeb', formatter: '.formatter.onFormatMoney'}"/>
+                         <Text
+                            text="" />
+                        <Text
+                            text="{path: 'data>/nodetot', formatter: '.formatter.onFormatMoney'}"/>    
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+    </Page>
+</mvc:View>
